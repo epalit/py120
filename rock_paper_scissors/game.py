@@ -3,27 +3,31 @@ import random
 class Player:
     CHOICES = ('rock', 'paper', 'scissors')
 
-    def __init__(self, player_type):
-        self._player_type = player_type.lower()
+    def __init__(self):
         self.move = None
 
-    def _is_human(self):
-        return self._player_type == 'human'
+class Computer:
+    def __init__(self):
+        super().__init__()
 
     def choose(self):
-        if self._is_human():
-            prompt = 'Please choose rock, paper, or scissors: '
+        self.move = random.choice(Player.CHOICES)
 
-            while True:
-                choice = input(prompt).lower()
-                if choice in Player.CHOICES:
-                    break
+class Human:
+    def __init__(self):
+        super().__init__()
 
-                print(f'Sorry, {choice} is not valid')
+    def choose(self):
+        prompt = 'Please choose rock, paper, or scissors: '
 
-            self.move = choice
-        else:
-            self.move = random.choice(Player.CHOICES)
+        while True:
+            choice = input(prompt).lower()
+            if choice in Player.CHOICES:
+                break
+
+            print(f'Sorry, {choice} is not valid')
+
+        self.move = choice
 
 class Move:
     def __init__(self):
@@ -38,8 +42,8 @@ class Rule:
 
 class RPSGame:
     def __init__(self):
-        self._human = Player('human')
-        self._computer = Player('computer')
+        self._human = Human()
+        self._computer = Computer()
 
     def _display_welcome_message(self):
         print('Welcome to Rock Paper Scissors!')
